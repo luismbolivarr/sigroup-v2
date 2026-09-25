@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { 
-  Building2, Users, CreditCard, Shield, FileText, 
-  ChevronRight, ChevronLeft, Save, CheckCircle2, 
-  MapPin, Calendar, ArrowLeft
+import {
+  Building2, Users, CreditCard, Shield, FileText,
+  ChevronRight, ChevronLeft, Save, CheckCircle2,
+  ArrowLeft
 } from "lucide-react";
 
 export default function CrearPoliza() {
