@@ -1,11 +1,11 @@
-﻿import React, { useEffect, useState } from "react";
+﻿import { useEffect, useState, type FormEvent } from "react";
 import { supabase } from "../lib/supabase";
 import type { Aseguradora } from "../types/database.types";
 
 export default function Aseguradoras() {
   const [aseguradoras, setAseguradoras] = useState<Aseguradora[]>([]);
   const [nombre, setNombre] = useState("");
-  const [rifNit, setRifNit] = useState("");
+  const [rif, setRif] = useState("");
   const [loading, setLoading] = useState(false);
 
   // Cargar aseguradoras al abrir la pantalla
@@ -24,13 +24,13 @@ export default function Aseguradoras() {
   }
 
   // Guardar nueva aseguradora
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setLoading(true);
-    
+
     const { error } = await supabase
       .from("aseguradoras")
-      .insert([{ nombre, rif_nit: rifNit }]);
+      .insert([{ nombre, rif }]);
 
     setLoading(false);
 
@@ -38,7 +38,7 @@ export default function Aseguradoras() {
       alert("Error al guardar: " + error.message);
     } else {
       setNombre("");
-      setRifNit("");
+      setRif("");
       fetchAseguradoras(); // Recargar la tabla
     }
   }
@@ -62,8 +62,8 @@ export default function Aseguradoras() {
           <input
             type="text"
             placeholder="RIF / NIT"
-            value={rifNit}
-            onChange={(e) => setRifNit(e.target.value)}
+            value={rif}
+            onChange={(e) => setRif(e.target.value)}
             style={{ padding: "8px", flex: 1 }}
           />
           <button 
@@ -96,9 +96,9 @@ export default function Aseguradoras() {
             aseguradoras.map((a) => (
               <tr key={a.id}>
                 <td style={{ padding: "10px", borderBottom: "1px solid #eee" }}>{a.nombre}</td>
-                <td style={{ padding: "10px", borderBottom: "1px solid #eee" }}>{a.rif_nit || "-"}</td>
+                <td style={{ padding: "10px", borderBottom: "1px solid #eee" }}>{a.rif || "-"}</td>
                 <td style={{ padding: "10px", borderBottom: "1px solid #eee" }}>
-                  {a.estado ? "✅ Activa" : "❌ Inactiva"}
+                  {a.activo ? "✅ Activa" : "❌ Inactiva"}
                 </td>
               </tr>
             ))

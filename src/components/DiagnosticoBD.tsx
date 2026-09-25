@@ -45,8 +45,8 @@ export default function DiagnosticoBD() {
         .from("aseguradoras")
         .insert({
           nombre: "Seguros de Prueba " + Math.floor(Math.random() * 1000),
-          rif_nit: "J-" + Math.floor(Math.random() * 99999999),
-          estado: true,
+          rif: "J-" + Math.floor(Math.random() * 99999999),
+          activo: true,
         });
 
       if (insertError) throw insertError;
@@ -112,10 +112,10 @@ export default function DiagnosticoBD() {
               {datos.map((d) => (
                 <tr key={d.id}>
                   <td style={{ padding: "8px", borderBottom: "1px solid #e2e8f0" }}>{d.nombre}</td>
-                  <td style={{ padding: "8px", borderBottom: "1px solid #e2e8f0" }}>{d.rif_nit}</td>
+                  <td style={{ padding: "8px", borderBottom: "1px solid #e2e8f0" }}>{d.rif}</td>
                   <td style={{ padding: "8px", borderBottom: "1px solid #e2e8f0" }}>
-                    <span style={{ background: d.estado ? "#dcfce7" : "#fee2e2", color: d.estado ? "#166534" : "#991b1b", padding: "2px 8px", borderRadius: "12px", fontSize: "12px" }}>
-                      {d.estado ? "Activo" : "Inactivo"}
+                    <span style={{ background: d.activo ? "#dcfce7" : "#fee2e2", color: d.activo ? "#166534" : "#991b1b", padding: "2px 8px", borderRadius: "12px", fontSize: "12px" }}>
+                      {d.activo ? "Activo" : "Inactivo"}
                     </span>
                   </td>
                 </tr>
