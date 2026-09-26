@@ -32,4 +32,10 @@ describe("getSupabaseConfig", () => {
       /variables de entorno requeridas/
     );
   });
+
+  it("throws when both values are missing", () => {
+    expect(() => getSupabaseConfig(undefined, undefined)).toThrow(
+      /variables de entorno requeridas/
+    );
+  });
 });
