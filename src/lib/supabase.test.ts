@@ -15,8 +15,20 @@ describe("getSupabaseConfig", () => {
     );
   });
 
+  it("throws when URL is empty", () => {
+    expect(() => getSupabaseConfig("", "anon-key")).toThrow(
+      /Faltan las variables de entorno/
+    );
+  });
+
   it("throws when anon key is missing", () => {
     expect(() => getSupabaseConfig("https://example.supabase.co", undefined)).toThrow(
+      /Faltan las variables de entorno/
+    );
+  });
+
+  it("throws when anon key is empty", () => {
+    expect(() => getSupabaseConfig("https://example.supabase.co", "")).toThrow(
       /Faltan las variables de entorno/
     );
   });
