@@ -4,7 +4,7 @@ export function getSupabaseConfig(
 ) {
   if (!supabaseUrl || !supabaseAnonKey) {
     throw new Error(
-      "Faltan las variables de entorno VITE_SUPABASE_URL o VITE_SUPABASE_ANON_KEY. " +
+      "Falta una o ambas variables de entorno requeridas: VITE_SUPABASE_URL y VITE_SUPABASE_ANON_KEY. " +
         "Copia .env.example a .env y rellena los valores de Supabase."
     );
   }
