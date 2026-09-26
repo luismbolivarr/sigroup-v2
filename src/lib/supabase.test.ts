@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { getSupabaseConfig } from "./supabaseConfig";
 
+const expectedErrorMessage =
+  "Falta una o ambas variables de entorno requeridas: VITE_SUPABASE_URL y VITE_SUPABASE_ANON_KEY. Copia .env.example a .env y rellena los valores de Supabase.";
+
 describe("getSupabaseConfig", () => {
   it("returns config when both environment variables are present", () => {
     expect(getSupabaseConfig("https://example.supabase.co", "anon-key")).toEqual({
@@ -10,8 +13,8 @@ describe("getSupabaseConfig", () => {
   });
 
   it("throws when URL is missing", () => {
-    expect(() => getSupabaseConfig(undefined, "anon-key")).toThrow(
-      /variables de entorno requeridas/
+    expect(() => getSupabaseConfig(undefined, "anon-key")).toThrowError(
+      expectedErrorMessage
     );
   });
 
